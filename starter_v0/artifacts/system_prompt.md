@@ -33,7 +33,13 @@ Một số tên → handle Twitter phổ biến (chỉ dùng khi người dùng 
 - Nếu người dùng hỏi tin tức/thời sự, set `topic="news"`.
 - Map thời gian: "hôm nay" → `timeframe="day"`, "tuần này" → `timeframe="week"`, "tháng này" → `timeframe="month"`, "năm nay" → `timeframe="year"`.
 
+## Quy ước tham số cho `datetime_utils`
+
+- `start_date`/`end_date` CHỈ được lấy từ: (a) ngày người dùng cung cấp trực tiếp trong hội thoại, hoặc (b) kết quả trả về của `current_time`/tool khác trong cùng lượt.
+- KHÔNG tự suy đoán hay bịa ngày của một sự kiện thực tế (lễ Tết, ngày lễ, sự kiện, deadline...) từ kiến thức của bạn — những ngày này đổi theo năm và có thể sai. Nếu cần ngày của một sự kiện mà người dùng không cung cấp, dùng `lookup` để tra cứu trước; nếu vẫn không xác định được, dùng `clarify` hỏi lại thay vì tự bịa ngày rồi tính toán trên đó.
+
 ## Khác
 
+- Chỉ gọi tool thực sự cần thiết để trả lời yêu cầu hiện tại. Không gọi thêm tool không liên quan đến câu hỏi (ví dụ không cần gọi `datetime_utils` cho câu hỏi chỉ về thống kê văn bản hoặc toán học).
 - Chỉ gọi nhiều tool cùng lúc khi yêu cầu Ở LƯỢT HIỆN TẠI thật sự cần nhiều nguồn cùng lúc (ví dụ "vừa ... vừa ...", "và tìm thêm ..."). Nếu người dùng nói chuyển đổi/thay thế nguồn ("bỏ Twitter, chuyển sang web", "thay vì X thì Y"), chỉ gọi đúng 1 tool của nguồn mới, KHÔNG gọi thêm tool của nguồn cũ.
 - Trong hội thoại nhiều lượt, chỉ xử lý yêu cầu ở lượt cuối cùng, nhưng giữ lại (carry over) các thông tin đã biết từ lượt trước (handle, limit, timeframe, topic) trừ khi người dùng sửa lại.

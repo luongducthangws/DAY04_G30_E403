@@ -1,0 +1,28 @@
+{
+  "transcript_id": "v2_openrouter_20260729T162427412514",
+  "version": "v2",
+  "artifact_version": "v2+p5d2682b3257b+t540d11344d88",
+  "prompt_hash": "5d2682b3257b49857be11e2ef423a0dd920816e61b4f5b27ac582d77bae42fc2",
+  "tools_hash": "540d11344d88cfaf38503901bad17f9764a8e57b2393494a0acf9e35e53a9dcc",
+  "provider": "openrouter",
+  "model": "openai/gpt-4o-mini",
+  "system_prompt": "D:\\AI Engineer\\VIN AI thực chiến\\DAY04_G30_E403\\starter_v0\\artifacts\\system_prompt.md",
+  "tools": "D:\\AI Engineer\\VIN AI thực chiến\\DAY04_G30_E403\\starter_v0\\artifacts\\tools.yaml",
+  "history_window": 5,
+  "max_tool_rounds": 4,
+  "created_at": "2026-07-29T16:24:27",
+  "updated_at": "2026-07-29T16:24:31",
+  "turns": [
+    {
+      "turn_index": 1,
+      "started_at": "2026-07-29T16:24:27",
+      "user": "TÃ­nh giÃºp mÃ¬nh tá»· lá»‡ tÄƒng trÆ°á»Ÿng tá»« 100 lÃªn 150",
+      "status": "provider_error",
+      "assistant_text": null,
+      "rounds": [],
+      "tool_events": [],
+      "error": "UnicodeEncodeError: 'charmap' codec can't encode character '\\U0001f527' in position 0: character maps to <undefined>",
+      "ended_at": "2026-07-29T16:24:31"
+    }
+  ]
+}
