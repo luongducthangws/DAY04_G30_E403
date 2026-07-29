@@ -77,6 +77,17 @@ tools:
         headline: {type: string, default: "", description: "Tiêu đề"}
       required: [items, template]
 
+  - name: hacker_news_search
+    description: "Tìm story trên Hacker News qua HN Search API. CHỈ dùng khi người dùng yêu cầu rõ Hacker News hoặc HN làm nguồn. Nếu chỉ hỏi web/tin tức nói chung, dùng lookup; nếu hỏi Twitter/X, dùng timeline hoặc social_search. Tool chỉ đọc, không đăng bài/bình luận/bình chọn và không cần API key."
+    parameters:
+      type: object
+      properties:
+        query: {type: string, minLength: 1, description: "Từ khóa/chủ đề cần tìm trên Hacker News"}
+        sort_by: {type: string, enum: [relevance, recent], default: "relevance", description: "relevance = phù hợp nhất; recent = mới nhất trước"}
+        timeframe: {type: string, enum: [all, day, week, month, year], default: "all", description: "Giới hạn thời gian; all = không giới hạn"}
+        max_results: {type: integer, minimum: 1, maximum: 10, default: 5, description: "Số story trả về (1-10)"}
+      required: [query]
+
   # ---------------- Bonus tools ----------------
   - name: send
     description: "Gửi văn bản lên kênh Telegram đã cấu hình. Đây là hành động ghi, cần xác nhận trước: chỉ gọi với confirmed=true SAU KHI đã hỏi clarify(response_type='yes_no') và người dùng đồng ý. Không dùng tool này để trả lời câu hỏi thông thường."
