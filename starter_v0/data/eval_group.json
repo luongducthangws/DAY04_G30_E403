@@ -1,7 +1,261 @@
 {
-  "dataset_id": "day04_v2_research_group",
-  "dataset_role": "group",
-  "description": "Template để NHÓM tự viết đúng 10 case: 5 single-turn dùng query và 5 multi-turn dùng turns. Mỗi case cần: id, phase='B', failure_type (thuộc allowed_failure_types), expect (tool_calls[...] hoặc no_tool=true), và metadata.what_it_tests. File để trống có chủ đích vì mỗi nhóm phải tự thiết kế các case này.",
-  "allowed_failure_types": ["wrong_tool", "wrong_arg_value", "wrong_boundary", "unnecessary_tool", "out_of_scope", "missing_info"],
-  "cases": []
+  "dataset_id": "day04_v2_group_eval",
+  "dataset_role": "evaluation",
+  "description": "10 test cases do nhóm tự thiết kế (5 single-turn, 5 multi-turn) phủ đủ 6 failure_type.",
+  "allowed_failure_types": [
+    "wrong_tool",
+    "wrong_arg_value",
+    "wrong_boundary",
+    "unnecessary_tool",
+    "out_of_scope",
+    "missing_info"
+  ],
+  "cases": [
+    {
+      "id": "CASE_01_SINGLE_WRONG_TOOL",
+      "phase": "B",
+      "query": "Tìm các bài viết về AI trên Hacker News tuần này.",
+      "failure_type": "wrong_tool",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "hacker_news_search",
+            "args": {
+              "query": "AI",
+              "timeframe": "week"
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "what_it_tests": "Kiểm tra xem agent có chọn đúng hacker_news_search thay vì lookup khi được chỉ định rõ nguồn Hacker News."
+      }
+    },
+    {
+      "id": "CASE_02_SINGLE_WRONG_ARG_VALUE",
+      "phase": "B",
+      "query": "Tìm tin tức thời sự về robotics trong ngày hôm nay.",
+      "failure_type": "wrong_arg_value",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "query": "robotics",
+              "topic": "news",
+              "timeframe": "day"
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "what_it_tests": "Kiểm tra xem agent có map từ 'tin tức' thành topic: 'news' và 'hôm nay' thành timeframe: 'day' đúng không."
+      }
+    },
+    {
+      "id": "CASE_03_SINGLE_WRONG_BOUNDARY",
+      "phase": "B",
+      "query": "Gửi luôn tin nhắn 'Xin chào' lên Telegram cho tôi nhé.",
+      "failure_type": "wrong_boundary",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "clarify",
+            "args": {
+              "response_type": "yes_no"
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "what_it_tests": "Kiểm tra xem agent có biết chặn các hành động nhạy cảm (như gửi tin nhắn) để xác nhận trước qua tool clarify thay vì gọi send luôn hay không."
+      }
+    },
+    {
+      "id": "CASE_04_SINGLE_UNNECESSARY_TOOL",
+      "phase": "B",
+      "query": "Chào bạn, hôm nay bạn cảm thấy thế nào?",
+      "failure_type": "unnecessary_tool",
+      "expect": {
+        "no_tool": true
+      },
+      "metadata": {
+        "what_it_tests": "Test xem agent có lạm dụng gọi tool khi người dùng chỉ hỏi thăm thông thường không."
+      }
+    },
+    {
+      "id": "CASE_05_SINGLE_OUT_OF_SCOPE",
+      "phase": "B",
+      "query": "Bạn có thể vẽ cho tôi một bức tranh phong cảnh được không?",
+      "failure_type": "out_of_scope",
+      "expect": {
+        "no_tool": true
+      },
+      "metadata": {
+        "what_it_tests": "Test xem agent có biết từ chối khéo khi gặp yêu cầu ngoài phạm vi (như vẽ tranh) thay vì cố gọi tool tìm kiếm."
+      }
+    },
+    {
+      "id": "CASE_06_MULTI_MISSING_INFO",
+      "phase": "B",
+      "turns": [
+        {
+          "role": "user",
+          "content": "Giúp tôi tóm tắt bài báo này nhé."
+        },
+        {
+          "role": "assistant",
+          "content": "Bạn muốn tóm tắt bài báo nào? Vui lòng cung cấp URL để tôi có thể đọc nội dung."
+        },
+        {
+          "role": "user",
+          "content": "Tóm tắt luôn đi."
+        }
+      ],
+      "failure_type": "missing_info",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "clarify",
+            "args": {
+              "response_type": "text"
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "what_it_tests": "Test xem agent có bắt buộc đòi bằng được URL qua clarify khi gọi fetch thay vì bịa ra một URL không."
+      }
+    },
+    {
+      "id": "CASE_07_MULTI_WRONG_TOOL",
+      "phase": "B",
+      "turns": [
+        {
+          "role": "user",
+          "content": "Xem trên Twitter (X) có gì hot."
+        },
+        {
+          "role": "assistant",
+          "content": "Bạn muốn xem xu hướng theo từ khóa cụ thể hay bài đăng từ một tài khoản nào?"
+        },
+        {
+          "role": "user",
+          "content": "Tìm bài đăng của tài khoản elonmusk nhé."
+        }
+      ],
+      "failure_type": "wrong_tool",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "timeline",
+            "args": {
+              "screenname": "elonmusk"
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "what_it_tests": "Test xem agent có chọn timeline thay vì social_search khi người dùng chỉ định rõ tên tài khoản cụ thể."
+      }
+    },
+    {
+      "id": "CASE_08_MULTI_WRONG_ARG_VALUE",
+      "phase": "B",
+      "turns": [
+        {
+          "role": "user",
+          "content": "Bạn tính toán giúp tôi nhé."
+        },
+        {
+          "role": "assistant",
+          "content": "Bạn cần tôi tính biểu thức nào?"
+        },
+        {
+          "role": "user",
+          "content": "Trung bình cộng của 120 và 80."
+        }
+      ],
+      "failure_type": "wrong_arg_value",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "math_eval",
+            "args": {
+              "expression": "(120 + 80) / 2"
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "what_it_tests": "Test xem agent có dịch đoạn hội thoại ngôn ngữ tự nhiên sang một biểu thức toán học đúng để gọi math_eval không."
+      }
+    },
+    {
+      "id": "CASE_09_MULTI_WRONG_BOUNDARY",
+      "phase": "B",
+      "turns": [
+        {
+          "role": "user",
+          "content": "Soạn cho tôi tin nhắn báo cáo tiến độ."
+        },
+        {
+          "role": "assistant",
+          "content": "Đã soạn xong tin nhắn báo cáo tiến độ. Bạn có cần tôi làm gì thêm không?"
+        },
+        {
+          "role": "user",
+          "content": "Tuyệt, gửi lên Telegram luôn."
+        }
+      ],
+      "failure_type": "wrong_boundary",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "clarify",
+            "args": {
+              "response_type": "yes_no"
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "what_it_tests": "Kể cả trong multi-turn, trước khi gọi 'send' lên Telegram, phải xác nhận lại qua clarify với yes_no thay vì tự gửi ngay."
+      }
+    },
+    {
+      "id": "CASE_10_MULTI_MISSING_INFO",
+      "phase": "B",
+      "turns": [
+        {
+          "role": "user",
+          "content": "Hôm nay là ngày 29/07/2026."
+        },
+        {
+          "role": "assistant",
+          "content": "Vâng, tôi đã ghi nhận thời gian hiện tại là 29/07/2026."
+        },
+        {
+          "role": "user",
+          "content": "Thế còn 5 ngày nữa là ngày mấy?"
+        }
+      ],
+      "failure_type": "missing_info",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "datetime_utils",
+            "args": {
+              "action": "add_days",
+              "days": 5,
+              "start_date": "2026-07-29"
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "what_it_tests": "Kiểm tra xem agent có biết lấy ngữ cảnh (start_date) từ lượt thoại trước đưa vào tham số của hàm add_days không."
+      }
+    }
+  ]
 }
