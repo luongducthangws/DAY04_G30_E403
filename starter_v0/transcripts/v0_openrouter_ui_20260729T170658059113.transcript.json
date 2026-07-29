@@ -1,0 +1,218 @@
+{
+  "transcript_id": "v0_openrouter_ui_20260729T170658059113",
+  "provider": "openrouter",
+  "system_prompt": "/home/pdat1301/Documents/git/DAY04_G30_E403/starter_v0/artifacts/system_prompt.md",
+  "tools": "/home/pdat1301/Documents/git/DAY04_G30_E403/starter_v0/artifacts/tools.yaml",
+  "history_window": 5,
+  "max_tool_rounds": 4,
+  "created_at": "2026-07-29T17:06:58",
+  "turns": [
+    {
+      "turn_index": 1,
+      "started_at": "2026-07-29T17:06:58",
+      "user": "tìm 5 tweet mứoi nhất",
+      "status": "answered",
+      "assistant_text": "Bạn có thể cho tôi biết từ khóa hoặc chủ đề cụ thể mà bạn muốn tìm kiếm các tweet mới nhất không?",
+      "rounds": [
+        {
+          "round": 1,
+          "assistant_text": "Bạn có thể cho tôi biết từ khóa hoặc chủ đề cụ thể mà bạn muốn tìm kiếm các tweet mới nhất không?",
+          "tool_calls": [],
+          "tool_results": []
+        }
+      ],
+      "tool_events": [],
+      "version": "v0",
+      "artifact_version": "v0+p14f22b43b20e+t9ca2e84e4298",
+      "prompt_hash": "14f22b43b20ee7831fdeca1ff70c1c6a48fb695ec05d1fbb5614dfa876ae7069",
+      "tools_hash": "9ca2e84e429873f1f2d294d2dd13f256664cdf7be76a172c475063d9a8af7c60",
+      "ended_at": "2026-07-29T17:06:58"
+    },
+    {
+      "turn_index": 2,
+      "started_at": "2026-07-29T17:07:43",
+      "user": "cr7",
+      "status": "answered",
+      "assistant_text": "Dưới đây là 5 tweet mới nhất liên quan đến \"cr7\":\n\n1. **[@laligafraudss](https://x.com/Brindille_10/status/2082407548364185918)**: Je pense que notre véritable réussite, c'est voir les suceurs de Cr7 passer des derniers faibles arguments pourris qui concernaient un peu les stats ou instagram à des arguments entièrement complotistes basés sur le mensonge et la folie collective instaurée par leur gourou 😭😭\n   - **Ngày**: 29 tháng 7, 2026\n\n2. **[@yung_deesimon](https://x.com/yung_deesimon/status/2082407533042442609)**: تخفيضات اليوم الكبرى:\\n• نون: CWW8 • فوغاكلوسيت: DZD • نمشي: DGQ4 • مفارش الحبيب: FF2 • ريفا: CR7 • تويو: GY88 • جيني: KA55 • ستايلي: R13 • دبوب: P26\\nفعّل كود كوبون خصم قوي.\\nسعر العمر 🤩💰\n   - **Ngày**: 29 tháng 7, 2026\n\n3. **[@Monny_Bangz](https://x.com/faire_ca/status/2082407517754147134)**: Et le truc de se mettre au service ça va 2min. Higuain à côté de cr7 il mettait des buts. CR7 n’empêche pas de marquer , il ne venait pas dans les pieds de benzema pour l’empêcher de marquer\n   - **Ngày**: 29 tháng 7, 2026\n\n4. **[@itskapteini](https://x.com/mojabenjamin/status/2082407506374959142)**: Ever heard of the great Albert Einstein and such other great minds? They were so thorough to the extent of sycophancy at attaining a result. CR7 of Portugal is another random example.\n   - **Ngày**: 29 tháng 7, 2026\n\n5. **[@MartinsTheGr8T](https://x.com/NessAustine/status/2082407468563304919)**: Don't waste your fingers energy bro 😂😂 Anything affiliated to CR7 lacks wisdom.\n   - **Ngày**: 29 tháng 7, 2026\n\nNếu bạn cần thêm thông tin hoặc tìm kiếm khác, hãy cho tôi biết!",
+      "rounds": [
+        {
+          "round": 1,
+          "assistant_text": null,
+          "tool_calls": [
+            {
+              "name": "social_search",
+              "args": {
+                "query": "cr7",
+                "limit": 5
+              }
+            }
+          ],
+          "tool_results": [
+            {
+              "tool": "social_search",
+              "args": {
+                "query": "cr7",
+                "limit": 5
+              },
+              "result": {
+                "tool": "search_tweets",
+                "query": "cr7",
+                "search_type": "Latest",
+                "items": [
+                  {
+                    "title": "@laligafraudss Je pense que notre véritable réussite, c'est voir les suceurs de Cr7 passer des derniers faibles argument",
+                    "summary": "@laligafraudss Je pense que notre véritable réussite, c'est voir les suceurs de Cr7 passer des derniers faibles arguments pourris qui concernaient un peu les stats ou instagram à des arguments entièrement complotistes basés sur le mensonge et la folie collective instaurée par leur gourou 😭😭",
+                    "url": "https://x.com/Brindille_10/status/2082407548364185918",
+                    "source": "@Brindille_10",
+                    "date": "Wed Jul 29 10:07:03 +0000 2026",
+                    "metrics": {
+                      "favorites": 0,
+                      "retweets": 0,
+                      "views": null
+                    }
+                  },
+                  {
+                    "title": "تخفيضات اليوم الكبرى:",
+                    "summary": "تخفيضات اليوم الكبرى:\n• نون: CWW8 • فوغاكلوسيت: DZD • نمشي: DGQ4 • مفارش الحبيب: FF2 • ريفا: CR7 • تويو: GY88 • جيني: KA55 • ستايلي: R13 • دبوب: P26\nفعّل كود كوبون خصم قوي.\nسعر العمر 🤩💰\nOsJPf https://t.co/MPgwWcOeLF",
+                    "url": "https://x.com/yung_deesimon/status/2082407533042442609",
+                    "source": "@yung_deesimon",
+                    "date": "Wed Jul 29 10:06:59 +0000 2026",
+                    "metrics": {
+                      "favorites": 3,
+                      "retweets": 0,
+                      "views": "5"
+                    }
+                  },
+                  {
+                    "title": "@Monny_Bangz @Djibs_Sbz Et le truc de se mettre au service ça va 2min. Higuain à côté de cr7 il mettait des buts. CR7 n’",
+                    "summary": "@Monny_Bangz @Djibs_Sbz Et le truc de se mettre au service ça va 2min. Higuain à côté de cr7 il mettait des buts. CR7 n’empêche pas de marquer , il ne venait pas dans les pieds de benzema pour l’empêcher de marquer",
+                    "url": "https://x.com/faire_ca/status/2082407517754147134",
+                    "source": "@faire_ca",
+                    "date": "Wed Jul 29 10:06:56 +0000 2026",
+                    "metrics": {
+                      "favorites": 0,
+                      "retweets": 0,
+                      "views": null
+                    }
+                  },
+                  {
+                    "title": "@itskapteini @IsraelJan88661 @scherargei Ever heard of the great Albert Einstein and such other great minds?",
+                    "summary": "@itskapteini @IsraelJan88661 @scherargei Ever heard of the great Albert Einstein and such other great minds?\n\nThey were so thorough to the extent of sycophancy at attaining a result.\nCR7 of Portugal is another random example.\n\nDo your assigned tasks diligently  as if your next breath depends on their success.",
+                    "url": "https://x.com/mojabenjamin/status/2082407506374959142",
+                    "source": "@mojabenjamin",
+                    "date": "Wed Jul 29 10:06:53 +0000 2026",
+                    "metrics": {
+                      "favorites": 0,
+                      "retweets": 0,
+                      "views": "1"
+                    }
+                  },
+                  {
+                    "title": "@MartinsTheGr8T @_AsiwajuLerry Don't waste your fingers energy bro 😂😂",
+                    "summary": "@MartinsTheGr8T @_AsiwajuLerry Don't waste your fingers energy bro 😂😂\nAnything affiliated to CR7 lacks wisdom.",
+                    "url": "https://x.com/NessAustine/status/2082407468563304919",
+                    "source": "@NessAustine",
+                    "date": "Wed Jul 29 10:06:44 +0000 2026",
+                    "metrics": {
+                      "favorites": 0,
+                      "retweets": 0,
+                      "views": "2"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "assistant_text": "Dưới đây là 5 tweet mới nhất liên quan đến \"cr7\":\n\n1. **[@laligafraudss](https://x.com/Brindille_10/status/2082407548364185918)**: Je pense que notre véritable réussite, c'est voir les suceurs de Cr7 passer des derniers faibles arguments pourris qui concernaient un peu les stats ou instagram à des arguments entièrement complotistes basés sur le mensonge et la folie collective instaurée par leur gourou 😭😭\n   - **Ngày**: 29 tháng 7, 2026\n\n2. **[@yung_deesimon](https://x.com/yung_deesimon/status/2082407533042442609)**: تخفيضات اليوم الكبرى:\\n• نون: CWW8 • فوغاكلوسيت: DZD • نمشي: DGQ4 • مفارش الحبيب: FF2 • ريفا: CR7 • تويو: GY88 • جيني: KA55 • ستايلي: R13 • دبوب: P26\\nفعّل كود كوبون خصم قوي.\\nسعر العمر 🤩💰\n   - **Ngày**: 29 tháng 7, 2026\n\n3. **[@Monny_Bangz](https://x.com/faire_ca/status/2082407517754147134)**: Et le truc de se mettre au service ça va 2min. Higuain à côté de cr7 il mettait des buts. CR7 n’empêche pas de marquer , il ne venait pas dans les pieds de benzema pour l’empêcher de marquer\n   - **Ngày**: 29 tháng 7, 2026\n\n4. **[@itskapteini](https://x.com/mojabenjamin/status/2082407506374959142)**: Ever heard of the great Albert Einstein and such other great minds? They were so thorough to the extent of sycophancy at attaining a result. CR7 of Portugal is another random example.\n   - **Ngày**: 29 tháng 7, 2026\n\n5. **[@MartinsTheGr8T](https://x.com/NessAustine/status/2082407468563304919)**: Don't waste your fingers energy bro 😂😂 Anything affiliated to CR7 lacks wisdom.\n   - **Ngày**: 29 tháng 7, 2026\n\nNếu bạn cần thêm thông tin hoặc tìm kiếm khác, hãy cho tôi biết!",
+          "tool_calls": [],
+          "tool_results": []
+        }
+      ],
+      "tool_events": [
+        {
+          "tool": "social_search",
+          "args": {
+            "query": "cr7",
+            "limit": 5
+          },
+          "result": {
+            "tool": "search_tweets",
+            "query": "cr7",
+            "search_type": "Latest",
+            "items": [
+              {
+                "title": "@laligafraudss Je pense que notre véritable réussite, c'est voir les suceurs de Cr7 passer des derniers faibles argument",
+                "summary": "@laligafraudss Je pense que notre véritable réussite, c'est voir les suceurs de Cr7 passer des derniers faibles arguments pourris qui concernaient un peu les stats ou instagram à des arguments entièrement complotistes basés sur le mensonge et la folie collective instaurée par leur gourou 😭😭",
+                "url": "https://x.com/Brindille_10/status/2082407548364185918",
+                "source": "@Brindille_10",
+                "date": "Wed Jul 29 10:07:03 +0000 2026",
+                "metrics": {
+                  "favorites": 0,
+                  "retweets": 0,
+                  "views": null
+                }
+              },
+              {
+                "title": "تخفيضات اليوم الكبرى:",
+                "summary": "تخفيضات اليوم الكبرى:\n• نون: CWW8 • فوغاكلوسيت: DZD • نمشي: DGQ4 • مفارش الحبيب: FF2 • ريفا: CR7 • تويو: GY88 • جيني: KA55 • ستايلي: R13 • دبوب: P26\nفعّل كود كوبون خصم قوي.\nسعر العمر 🤩💰\nOsJPf https://t.co/MPgwWcOeLF",
+                "url": "https://x.com/yung_deesimon/status/2082407533042442609",
+                "source": "@yung_deesimon",
+                "date": "Wed Jul 29 10:06:59 +0000 2026",
+                "metrics": {
+                  "favorites": 3,
+                  "retweets": 0,
+                  "views": "5"
+                }
+              },
+              {
+                "title": "@Monny_Bangz @Djibs_Sbz Et le truc de se mettre au service ça va 2min. Higuain à côté de cr7 il mettait des buts. CR7 n’",
+                "summary": "@Monny_Bangz @Djibs_Sbz Et le truc de se mettre au service ça va 2min. Higuain à côté de cr7 il mettait des buts. CR7 n’empêche pas de marquer , il ne venait pas dans les pieds de benzema pour l’empêcher de marquer",
+                "url": "https://x.com/faire_ca/status/2082407517754147134",
+                "source": "@faire_ca",
+                "date": "Wed Jul 29 10:06:56 +0000 2026",
+                "metrics": {
+                  "favorites": 0,
+                  "retweets": 0,
+                  "views": null
+                }
+              },
+              {
+                "title": "@itskapteini @IsraelJan88661 @scherargei Ever heard of the great Albert Einstein and such other great minds?",
+                "summary": "@itskapteini @IsraelJan88661 @scherargei Ever heard of the great Albert Einstein and such other great minds?\n\nThey were so thorough to the extent of sycophancy at attaining a result.\nCR7 of Portugal is another random example.\n\nDo your assigned tasks diligently  as if your next breath depends on their success.",
+                "url": "https://x.com/mojabenjamin/status/2082407506374959142",
+                "source": "@mojabenjamin",
+                "date": "Wed Jul 29 10:06:53 +0000 2026",
+                "metrics": {
+                  "favorites": 0,
+                  "retweets": 0,
+                  "views": "1"
+                }
+              },
+              {
+                "title": "@MartinsTheGr8T @_AsiwajuLerry Don't waste your fingers energy bro 😂😂",
+                "summary": "@MartinsTheGr8T @_AsiwajuLerry Don't waste your fingers energy bro 😂😂\nAnything affiliated to CR7 lacks wisdom.",
+                "url": "https://x.com/NessAustine/status/2082407468563304919",
+                "source": "@NessAustine",
+                "date": "Wed Jul 29 10:06:44 +0000 2026",
+                "metrics": {
+                  "favorites": 0,
+                  "retweets": 0,
+                  "views": "2"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "version": "v0",
+      "artifact_version": "v0+p14f22b43b20e+t9ca2e84e4298",
+      "prompt_hash": "14f22b43b20ee7831fdeca1ff70c1c6a48fb695ec05d1fbb5614dfa876ae7069",
+      "tools_hash": "9ca2e84e429873f1f2d294d2dd13f256664cdf7be76a172c475063d9a8af7c60",
+      "ended_at": "2026-07-29T17:07:43"
+    }
+  ],
+  "updated_at": "2026-07-29T17:07:43"
+}

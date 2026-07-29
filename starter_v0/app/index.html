@@ -30,10 +30,21 @@
           // Nền cho chữ trắng: đậm hơn primary để đạt AA (5.06:1)
           'primary-solid': '#a9583e',
           'primary-solid-hover': '#8f4a33',
-          teal: '#5db8a6',
+          // Đậm hơn bản gốc #5db8a6 để border đạt ≥3:1 (WCAG 1.4.11) trên cả 2 theme
+          teal: '#4a9384',
           success: '#5db872',
           warning: '#d4a017',
           error: '#c64545',
+          // Badge trạng thái: cặp nền/chữ/viền cố định, đã kiểm tra AA ≥4.5:1 ở cả 2 theme
+          'status-success-bg': 'var(--status-success-bg)',
+          'status-success-text': 'var(--status-success-text)',
+          'status-success-border': 'var(--status-success-border)',
+          'status-warning-bg': 'var(--status-warning-bg)',
+          'status-warning-text': 'var(--status-warning-text)',
+          'status-warning-border': 'var(--status-warning-border)',
+          'status-error-bg': 'var(--status-error-bg)',
+          'status-error-text': 'var(--status-error-text)',
+          'status-error-border': 'var(--status-error-border)',
         },
         fontFamily: {
           display: ['Fraunces', 'Georgia', 'serif'],
@@ -58,6 +69,16 @@
     --line-strong: #bfb29c;
     --code-bg: #f2ede4;
     --shadow: 0 1px 2px rgba(20,20,19,.10), 0 10px 30px rgba(20,20,19,.10);
+    /* Badge trạng thái: nền đặc (không dùng opacity) để chữ luôn đạt AA bất kể panel nào */
+    --status-success-bg: #dff0e2;
+    --status-success-text: #1f6b34;
+    --status-success-border: #b7dcc0;
+    --status-warning-bg: #f7ecd2;
+    --status-warning-text: #6b4e00;
+    --status-warning-border: #e7d29e;
+    --status-error-bg: #fbe4e4;
+    --status-error-text: #a32626;
+    --status-error-border: #f0bcbc;
   }
   /* Tối: nền trang đen, panel nâng lên rõ rệt (1.43:1) */
   .dark {
@@ -72,6 +93,15 @@
     --line-strong: rgba(255,255,255,.18);
     --code-bg: rgba(0,0,0,.38);
     --shadow: 0 1px 2px rgba(0,0,0,.5), 0 10px 30px rgba(0,0,0,.45);
+    --status-success-bg: #1f3325;
+    --status-success-text: #7ad999;
+    --status-success-border: #315a3d;
+    --status-warning-bg: #33280f;
+    --status-warning-text: #f0bf4c;
+    --status-warning-border: #5c4a1c;
+    --status-error-bg: #3a2020;
+    --status-error-text: #f19b9b;
+    --status-error-border: #5f3232;
   }
   body { font-family: 'Inter', system-ui, sans-serif; }
   .panel-shadow { box-shadow: var(--shadow); }
@@ -283,9 +313,9 @@
     }
 
     function statusColor(status) {
-      if (status === 'answered') return 'bg-success/15 text-success border-success/40';
-      if (status === 'waiting_for_user') return 'bg-warning/15 text-warning border-warning/40';
-      return 'bg-error/15 text-error border-error/40';
+      if (status === 'answered') return 'bg-status-success-bg text-status-success-text border-status-success-border';
+      if (status === 'waiting_for_user') return 'bg-status-warning-bg text-status-warning-text border-status-warning-border';
+      return 'bg-status-error-bg text-status-error-text border-status-error-border';
     }
 
     function renderTrace(result, artifactVersion, transcriptPath) {
@@ -433,7 +463,7 @@
       const diff = curr - prev;
       if (Math.abs(diff) < 0.001) return `<span class="text-fg-faint text-[10px]">±0</span>`;
       const up = diff > 0;
-      const color = up ? 'text-success' : 'text-error';
+      const color = up ? 'text-status-success-text' : 'text-status-error-text';
       const sign = up ? '+' : '';
       return `<span class="${color} text-[10px] font-medium">${sign}${Math.round(diff * 100)}pt</span>`;
     }
@@ -450,13 +480,13 @@
             </div>`;
         }
         const badge = c.passed
-          ? 'bg-success/15 text-success border-success/40'
-          : 'bg-error/15 text-error border-error/40';
+          ? 'bg-status-success-bg text-status-success-text border-status-success-border'
+          : 'bg-status-error-bg text-status-error-text border-status-error-border';
         const toolsHtml = (c.actual_tool_calls || []).map(t => `
           <div class="font-code text-[11px] text-fg-soft break-all mt-1">${escapeHtml(t.name)}(${escapeHtml(JSON.stringify(t.args))})</div>
         `).join('') || '<div class="text-fg-faint text-[11px] mt-1">Không gọi tool</div>';
         const failuresHtml = (c.failures || []).length
-          ? `<div class="mt-2 text-error text-[11px]">${c.failures.map(escapeHtml).join('; ')}</div>`
+          ? `<div class="mt-2 text-status-error-text text-[11px]">${c.failures.map(escapeHtml).join('; ')}</div>`
           : '';
         return `
           <div class="border border-line rounded-lg overflow-hidden">
@@ -515,7 +545,7 @@
         <th class="px-3 py-2 text-center font-medium">
           <div class="text-fg">${escapeHtml(v.version)}</div>
           <div class="text-[10px] text-fg-faint font-code truncate max-w-[10rem] mx-auto" title="${escapeHtml(v.artifact_version || '')}">${escapeHtml(v.artifact_version || '—')}</div>
-          <div class="text-[10px] mt-0.5 ${v.metrics_valid ? 'text-success' : 'text-warning'}">${v.metrics_valid ? 'metric hợp lệ' : 'cần review'}</div>
+          <div class="text-[10px] mt-0.5 ${v.metrics_valid ? 'text-status-success-text' : 'text-status-warning-text'}">${v.metrics_valid ? 'metric hợp lệ' : 'cần review'}</div>
         </th>`).join('');
 
       const metricTable = `
@@ -537,7 +567,7 @@
           const dot = c.passed ? 'bg-success' : 'bg-error';
           const label = c.passed ? 'PASS' : (c.failure_type || 'FAIL');
           return `<td class="px-3 py-2 text-center">
-            <span class="inline-flex items-center gap-1 text-[11px] ${c.passed ? 'text-success' : 'text-error'}">
+            <span class="inline-flex items-center gap-1 text-[11px] ${c.passed ? 'text-status-success-text' : 'text-status-error-text'}">
               <span class="w-1.5 h-1.5 rounded-full ${dot}"></span>${escapeHtml(label)}
             </span>
           </td>`;
@@ -607,7 +637,7 @@
         evidenceLoaded = true;
         renderCompare(data);
       } catch (err) {
-        compareBody.innerHTML = `<p class="text-error text-sm">Lỗi tải evidence: ${escapeHtml(err.message)}</p>`;
+        compareBody.innerHTML = `<p class="text-status-error-text text-sm">Lỗi tải evidence: ${escapeHtml(err.message)}</p>`;
       }
     }
     reloadEvidenceBtn.addEventListener('click', loadEvidence);
