@@ -88,6 +88,34 @@ tools:
         max_results: {type: integer, minimum: 1, maximum: 10, default: 5, description: "Số story trả về (1-10)"}
       required: [query]
 
+  - name: text_stats
+    description: "Phân tích và thống kê văn bản: đếm từ, ký tự, câu, thời gian đọc, danh sách URL/Email và từ khóa phổ biến. Dùng để tổng hợp thông tin trích xuất từ fetch hoặc paper_text."
+    parameters:
+      type: object
+      properties:
+        text: {type: string, description: "Nội dung văn bản cần phân tích thống kê"}
+        top_keywords_limit: {type: integer, default: 5, description: "Số lượng từ khóa phổ biến nhất cần trích xuất"}
+      required: [text]
+
+  - name: math_eval
+    description: "Tính toán biểu thức toán học an toàn (phần trăm, tỷ lệ tăng trưởng, trung bình cộng, phép tính số học). Dùng khi cần xử lý số liệu nghiên cứu."
+    parameters:
+      type: object
+      properties:
+        expression: {type: string, description: "Biểu thức toán học dạng chuỗi, ví dụ '(120 + 80) / 2' hoặc 'round(150.5, 1)'"}
+      required: [expression]
+
+  - name: datetime_utils
+    description: "Xử lý thời gian và ngày tháng: lấy ngày hiện tại (current_time), tính khoảng cách ngày (date_diff) hoặc cộng/trừ số ngày (add_days)."
+    parameters:
+      type: object
+      properties:
+        action: {type: string, enum: [current_time, date_diff, add_days], default: "current_time", description: "Hành động cần thực hiện"}
+        start_date: {type: string, description: "Ngày bắt đầu dạng YYYY-MM-DD"}
+        end_date: {type: string, description: "Ngày kết thúc dạng YYYY-MM-DD"}
+        days: {type: integer, default: 0, description: "Số ngày cần cộng/trừ"}
+      required: [action]
+
   # ---------------- Bonus tools ----------------
   - name: send
     description: "Gửi văn bản lên kênh Telegram đã cấu hình. Đây là hành động ghi, cần xác nhận trước: chỉ gọi với confirmed=true SAU KHI đã hỏi clarify(response_type='yes_no') và người dùng đồng ý. Không dùng tool này để trả lời câu hỏi thông thường."

@@ -18,6 +18,9 @@ from .policy.tool import search_company_policy
 from .social_search.tool import search_tweets
 from .send.tool import send_telegram
 from .lookup.tool import web_search
+from .text_stats.tool import text_stats
+from .math_eval.tool import math_eval
+from .datetime_utils.tool import datetime_utils
 
 
 # NOTE (starter_v0): tool names here are intentionally vague. These keys are the
@@ -33,6 +36,9 @@ TOOL_FUNCTIONS = {
     "fetch": read_url,
     "format": render_digest,
     "hacker_news_search": search_hacker_news,
+    "text_stats": text_stats,
+    "math_eval": math_eval,
+    "datetime_utils": datetime_utils,
     "send": send_telegram,
     "policy": search_company_policy,
     "papers": arxiv_search,
