@@ -1,0 +1,99 @@
+{
+  "transcript_id": "v3_openrouter_ui_20260729T165028789787",
+  "provider": "openrouter",
+  "system_prompt": "D:\\AI Engineer\\VIN AI thực chiến\\DAY04_G30_E403\\starter_v0\\artifacts\\system_prompt.md",
+  "tools": "D:\\AI Engineer\\VIN AI thực chiến\\DAY04_G30_E403\\starter_v0\\artifacts\\tools.yaml",
+  "history_window": 5,
+  "max_tool_rounds": 4,
+  "created_at": "2026-07-29T16:50:28",
+  "turns": [
+    {
+      "turn_index": 1,
+      "started_at": "2026-07-29T16:50:28",
+      "user": "Tweet moi nhat cua Sam Altman la gi?",
+      "status": "answered",
+      "assistant_text": "Tweet mới nhất của Sam Altman (@sama) có tiêu đề \"wrong\" và được đăng vào ngày 27 tháng 7 năm 2026. Bạn có thể xem tweet tại [đây](https://x.com/sama/status/2081832600591892712). \n\nTweet này đã nhận được 11,333 lượt thích, 284 lượt retweet và 2,214,539 lượt xem.",
+      "rounds": [
+        {
+          "round": 1,
+          "assistant_text": null,
+          "tool_calls": [
+            {
+              "name": "timeline",
+              "args": {
+                "screenname": "sama",
+                "limit": 1
+              }
+            }
+          ],
+          "tool_results": [
+            {
+              "tool": "timeline",
+              "args": {
+                "screenname": "sama",
+                "limit": 1
+              },
+              "result": {
+                "tool": "get_user_tweets",
+                "screenname": "sama",
+                "items": [
+                  {
+                    "title": "wrong",
+                    "summary": "wrong",
+                    "url": "https://x.com/sama/status/2081832600591892712",
+                    "source": "@sama",
+                    "date": "Mon Jul 27 20:02:25 +0000 2026",
+                    "metrics": {
+                      "favorites": 11333,
+                      "retweets": 284,
+                      "views": "2214539"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "assistant_text": "Tweet mới nhất của Sam Altman (@sama) có tiêu đề \"wrong\" và được đăng vào ngày 27 tháng 7 năm 2026. Bạn có thể xem tweet tại [đây](https://x.com/sama/status/2081832600591892712). \n\nTweet này đã nhận được 11,333 lượt thích, 284 lượt retweet và 2,214,539 lượt xem.",
+          "tool_calls": [],
+          "tool_results": []
+        }
+      ],
+      "tool_events": [
+        {
+          "tool": "timeline",
+          "args": {
+            "screenname": "sama",
+            "limit": 1
+          },
+          "result": {
+            "tool": "get_user_tweets",
+            "screenname": "sama",
+            "items": [
+              {
+                "title": "wrong",
+                "summary": "wrong",
+                "url": "https://x.com/sama/status/2081832600591892712",
+                "source": "@sama",
+                "date": "Mon Jul 27 20:02:25 +0000 2026",
+                "metrics": {
+                  "favorites": 11333,
+                  "retweets": 284,
+                  "views": "2214539"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "version": "v3",
+      "artifact_version": "v3+p6c99f96719b3+t540d11344d88",
+      "prompt_hash": "6c99f96719b30673823096ca8bae832fd13b1490feef3a50f2afbdd5b966f99b",
+      "tools_hash": "540d11344d88cfaf38503901bad17f9764a8e57b2393494a0acf9e35e53a9dcc",
+      "ended_at": "2026-07-29T16:50:28"
+    }
+  ],
+  "updated_at": "2026-07-29T16:50:28"
+}
