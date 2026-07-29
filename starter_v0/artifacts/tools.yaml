@@ -9,7 +9,7 @@
 tools:
   # ---------------- Core tools ----------------
   - name: clarify
-    description: "Gửi một câu hỏi cho người dùng."
+    description: "Hỏi lại người dùng. Dùng khi thiếu thông tin bắt buộc (tên/handle, URL, ...) để gọi tool khác đúng, hoặc khi cần xác nhận yes/no trước một hành động ghi (ví dụ trước khi gọi send). KHÔNG tự đoán giá trị thay vì hỏi."
     parameters:
       type: object
       properties:
@@ -19,7 +19,7 @@ tools:
       required: [question]
 
   - name: timeline
-    description: "Lấy các bài đăng gần đây."
+    description: "Lấy các bài đăng gần đây của MỘT tài khoản Twitter/X cụ thể. Chỉ dùng khi đã biết rõ tên hoặc handle; nếu không rõ ai, gọi clarify trước thay vì đoán."
     parameters:
       type: object
       properties:
@@ -28,32 +28,32 @@ tools:
       required: [screenname]
 
   - name: social_search
-    description: "Tìm trên mạng xã hội."
+    description: "Tìm bài đăng trên Twitter/X theo TỪ KHÓA/chủ đề (không phải theo một tài khoản cụ thể)."
     parameters:
       type: object
       properties:
-        query: {type: string, default: "", description: "Từ khóa"}
-        search_type: {type: string, enum: [Latest, Top], default: "Latest", description: "Cách sắp xếp"}
+        query: {type: string, default: "", description: "Từ khóa chủ đề, không kèm từ như 'top/phổ biến'"}
+        search_type: {type: string, enum: [Latest, Top], default: "Latest", description: "'phổ biến/nổi bật/top' -> Top; mặc định Latest"}
         limit: {type: integer, default: 5, description: "Số lượng"}
       required: [query]
 
   - name: lookup
-    description: "Tra cứu thông tin trên internet."
+    description: "Tra cứu thông tin trên internet (web search chung hoặc tin tức)."
     parameters:
       type: object
       properties:
-        query: {type: string, default: "", description: "Truy vấn"}
-        topic: {type: string, enum: [general, news], default: "general", description: "Phân loại"}
-        timeframe: {type: string, enum: [day, week, month, year], default: "week", description: "Khoảng thời gian"}
+        query: {type: string, default: "", description: "CHỈ từ khóa chủ đề chính, ví dụ 'AI', 'robotics'. Không nhét 'tin tức'/'hôm nay'/'tuần này' vào đây"}
+        topic: {type: string, enum: [general, news], default: "general", description: "Dùng 'news' khi hỏi tin tức/thời sự"}
+        timeframe: {type: string, enum: [day, week, month, year], default: "week", description: "'hôm nay'->day, 'tuần này'->week, 'tháng này'->month, 'năm nay'->year"}
         max_results: {type: integer, default: 5, description: "Số kết quả"}
       required: [query]
 
   - name: fetch
-    description: "Lấy nội dung từ một địa chỉ."
+    description: "Đọc nội dung một URL cụ thể đã biết. Chỉ dùng khi có URL thật trong hội thoại; không tự bịa/đoán URL — thiếu URL thì gọi clarify."
     parameters:
       type: object
       properties:
-        url: {type: string, default: "", description: "Địa chỉ"}
+        url: {type: string, default: "", description: "URL đầy đủ, lấy đúng từ hội thoại"}
       required: [url]
 
   - name: format
@@ -79,7 +79,7 @@ tools:
 
   # ---------------- Bonus tools ----------------
   - name: send
-    description: "Gửi một đoạn văn bản đi."
+    description: "Gửi văn bản lên kênh Telegram đã cấu hình. Đây là hành động ghi, cần xác nhận trước: chỉ gọi với confirmed=true SAU KHI đã hỏi clarify(response_type='yes_no') và người dùng đồng ý. Không dùng tool này để trả lời câu hỏi thông thường."
     parameters:
       type: object
       properties:
